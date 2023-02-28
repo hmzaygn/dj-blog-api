@@ -70,25 +70,3 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Like"
-
-
-"""
-
-Bu satır, Django'nun models modülü içerisinde yer alan SlugField sınıfından bir örnek oluşturarak, slug isimli bir alanı modelimize eklememizi sağlar.
-
-SlugField, genellikle bir nesnenin benzersiz bir URL'sinde kullanılmak üzere tasarlanmış bir karakter dizisidir. Örneğin, bir blog gönderisinin URL'sinde kullanılacak bir slug, gönderinin başlığından veya başlıktaki bazı kelimelerin birleştirilmesiyle elde edilebilir. Slug alanının boş olabilmesi (blank=True) ve benzersiz olması (unique=True) belirtilmiştir.
-
-Örneğin:
-
-python
-Copy code
-class BlogPost(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(blank=True, unique=True)
-    content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-Bu model, bir blog gönderisi için gereken temel alanları içermektedir. title alanı, gönderinin başlığını, content alanı ise gönderinin içeriğini depolamak için kullanılır. author alanı, gönderinin yazarını belirtirken, created_at ve updated_at alanları gönderinin ne zaman oluşturulduğunu ve son güncellendiğini takip eder. slug alanı ise gönderinin URL'sinde kullanılacak benzersiz karakter dizisini barındırır.
-
-"""
