@@ -16,7 +16,6 @@ from .serializers import (
     BlogSerializer,
     CommentSerializer,
     LikeSerializer,
-    BlogViewSerializer,
 )
 from .permissions import IsOwner
 

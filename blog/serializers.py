@@ -46,7 +46,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class BlogSerializer(serializers.ModelSerializer):
 
-    like = LikeSerializer(many=True, read_only=True)
+    # like = LikeSerializer(many=True, read_only=True)
     like_count = serializers.SerializerMethodField()
     has_liked = serializers.SerializerMethodField()
     comments = CommentSerializer(many=True, read_only=True)
