@@ -46,10 +46,12 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class BlogSerializer(serializers.ModelSerializer):
 
-    # like = LikeSerializer(many=True, read_only=True)
+    like = LikeSerializer(many=True, read_only=True)
     like_count = serializers.SerializerMethodField()
     has_liked = serializers.SerializerMethodField()
     comments = CommentSerializer(many=True, read_only=True)
+    author = serializers.StringRelatedField()
+    author_id = serializers.IntegerField()
     
     class Meta:
         model = Blog
@@ -62,11 +64,13 @@ class BlogSerializer(serializers.ModelSerializer):
             "status" ,
             "published_date",
             "updated_date",
+            "author_id",
             "author",
-            # "like",
+            "like",
             "like_count",
             "has_liked",
             "comments",
+            "view_count",
             ]
         
     def get_like_count(self, obj):
@@ -75,6 +79,6 @@ class BlogSerializer(serializers.ModelSerializer):
     def get_has_liked(self, obj):
         request = self.context['request']
         if request.user.is_authenticated:
-            if Blog.objects.filter(Q(like__user=request.user) & Q(like__blog=obj)).exists():
+            if Like.objects.filter(user=request.user.id, blog=obj).exists():
                 return True
             return False 
