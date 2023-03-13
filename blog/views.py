@@ -32,7 +32,10 @@ class BlogDetailView(generics.RetrieveAPIView):
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
-        BlogView.objects.create(blog=instance, user=request.user)
+
+        if not (BlogView.objects.filter(blog=instance,user=request.user)):
+             BlogView.objects.create(blog=instance, user=request.user)
+        
         return Response(serializer.data)
 
 class BlogCreateView(generics.CreateAPIView):

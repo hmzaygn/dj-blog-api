@@ -7,6 +7,8 @@ from .models import (
     BlogView
     )
 
+from users.serializers import ProfileSerializer
+
 class LikeSerializer(serializers.ModelSerializer):
 
     user= serializers.StringRelatedField()
@@ -70,7 +72,7 @@ class BlogSerializer(serializers.ModelSerializer):
             "like_count",
             "has_liked",
             "comments",
-            "view_count",
+            "get_view_count",
             ]
         
     def get_like_count(self, obj):
