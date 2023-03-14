@@ -28,8 +28,8 @@ class LikeSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    user = serializers.StringRelatedField()
-    user_id = serializers.IntegerField(read_only=True)
+    user = ProfileSerializer(source='user.profile', read_only=True)
+    user_id = serializers.IntegerField()
     blog = serializers.StringRelatedField()
     blog_id = serializers.IntegerField()
 

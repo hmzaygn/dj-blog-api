@@ -90,13 +90,13 @@ class CommentView(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+    # def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
 
-        obj = get_object_or_404(Blog, id=request.data["blog_id"])
+    #     obj = get_object_or_404(Blog, id=request.data["blog_id"])
 
-        Comment.objects.create(user_id=request.user.id, blog=obj)
+    #     Comment.objects.create(user_id=request.user.id, blog=obj)
 
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    #     headers = self.get_success_headers(serializer.data)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
