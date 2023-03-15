@@ -61,14 +61,6 @@ class UserTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', "username",'email', 'first_name', 'last_name', 'is_superuser')
-
-
-class CustomTokenSerializer(TokenSerializer):
-
-    user = UserTokenSerializer(read_only=True)
-
-    class Meta(TokenSerializer.Meta):
-        fields = ('key', 'user')
         
 class ProfileSerializer(serializers.ModelSerializer):
     
@@ -85,3 +77,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         instance.user_id = self.context['request'].user.id
         instance.save()
         return instance
+    
+class CustomTokenSerializer(TokenSerializer):
+
+    user = UserTokenSerializer(read_only=True)
+
+    class Meta(TokenSerializer.Meta):
+        fields = ('key', 'user',)
