@@ -23,6 +23,15 @@ class BlogListView(generics.ListAPIView):
     queryset = Blog.objects.filter(status="P")
     serializer_class = BlogSerializer
     # permission_classes [AllowAny,]
+
+class OwnerBlogListView(generics.ListAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticated,IsOwner]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Blog.objects.filter(author=user)
     
 class BlogDetailView(generics.RetrieveAPIView):
     queryset = Blog.objects.all()
