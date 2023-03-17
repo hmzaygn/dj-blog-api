@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 blog_category = [
-    ("i", "İnsan"),
-    ("d", "Doğa"),
-    ("y", "Yaşam"),
-    ("s", "Sağlık"),
-    ("t", "Teknoloji"),
+    ("p", "Human"),
+    ("n", "Nature"),
+    ("l", "life"),
+    ("h", "Health"),
+    ("t", "Technology"),
 ]
 
 blog_status = [
